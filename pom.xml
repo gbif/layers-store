@@ -11,7 +11,7 @@
 	<!--<groupId>au.org.ala</groupId>-->
 	<artifactId>layers-store</artifactId>
 	<packaging>jar</packaging>
-	<version>2.3.0-gbif-2</version>
+	<version>2.3.0-gbif-3-SNAPSHOT</version>
 	<name>ALA Spatial Layers Store</name>
 	<url>http://www.ala.org.au</url>
 
@@ -19,7 +19,7 @@
         <connection>scm:git:git@github.com:gbif/layers-store.git</connection>
         <url>https://github.com/gbif/layers-store</url>
         <developerConnection>scm:git:git@github.com:gbif/layers-store.git</developerConnection>
-        <tag>layers-store-2.3.0-gbif-2</tag>
+        <tag>HEAD</tag>
     </scm>
 
 	<repositories>
