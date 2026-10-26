@@ -21,6 +21,21 @@
 		</developerConnection>
 	</scm>
 
+	<repositories>
+		<repository>
+			<id>gbif-all</id>
+			<url>https://repository.gbif.org/content/groups/gbif</url>
+		</repository>
+		<repository>
+			<id>gbif-thirdparty</id>
+			<url>https://repository.gbif.org/content/repositories/thirdparty/</url>
+		</repository>
+		<repository>
+			<id>ala-release</id>
+			<url>https://repository.gbif.org/repository/ala-release/</url>
+		</repository>
+	</repositories>
+
 	<distributionManagement>
 		<repository>
 			<id>thirdparty</id>
