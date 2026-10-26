@@ -15,11 +15,12 @@
 	<name>ALA Spatial Layers Store</name>
 	<url>http://www.ala.org.au</url>
 
-	<!-- AN SCM entry that points to the SVN directory that contains the pom file for the project  -->
-	<scm>
-		<developerConnection>scm:svn:https://alageospatialportal.googlecode.com/svn/trunk/layers-store/
-		</developerConnection>
-	</scm>
+    <scm>
+        <connection>scm:git:git@github.com:gbif/layers-store.git</connection>
+        <url>https://github.com/gbif/layers-store</url>
+        <developerConnection>scm:git:git@github.com:gbif/layers-store.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
 
 	<repositories>
 		<repository>
