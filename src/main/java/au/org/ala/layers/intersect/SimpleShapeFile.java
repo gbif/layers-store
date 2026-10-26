@@ -2093,7 +2093,7 @@ class ShapesReference extends Object implements Serializable {
 
         List<ImmutablePair<Integer, Double>> r;
 
-        if (mask != null && distance < mask_lat_multiplier && distance < mask_long_multiplier) {
+        if (mask != null) {
             Map<Integer, Double> hitsMap = new HashMap<>();
 
             // apply multipliers
@@ -2101,40 +2101,21 @@ class ShapesReference extends Object implements Serializable {
             int long2 = (int) Math.floor((longitude + distance - boundingbox_all[0][0]) * mask_long_multiplier);
             int lat1 = (int) Math.floor((latitude - distance - boundingbox_all[0][1]) * mask_lat_multiplier);
             int lat2 = (int) Math.floor((latitude + distance - boundingbox_all[0][1]) * mask_lat_multiplier);
-            // check is within mask bounds
-            if (long1 >= 0 && long1 < mask[0].length
-                && lat1 >= 0 && lat1 < mask.length
-                && mask[long1][lat1] != null) {
-                // get list of shapes to check at this mask cell
-                ArrayList<Integer> ali = mask[long1][lat1];
-                checkCells(hitsMap, sra, ali, longitude, latitude, distance);
-            }
 
-            if (long1 != long2
-                && long2 >= 0 && long2 < mask[0].length
-                && lat1 >= 0 && lat1 < mask.length
-                && mask[long2][lat1] != null) {
-                // get list of shapes to check at this mask cell
-                ArrayList<Integer> ali = mask[long2][lat1];
-                checkCells(hitsMap, sra, ali, longitude, latitude, distance);
-            }
+            // check each potential cell
+            for (int x = long1; x <= long2; x++) {
+                for (int y = lat1; y <= lat2; y++) {
 
-            if (lat1 != lat2
-                && long1 >= 0 && long1 < mask[0].length
-                && lat2 >= 0 && lat2 < mask.length
-                && mask[long1][lat2] != null) {
-                // get list of shapes to check at this mask cell
-                ArrayList<Integer> ali = mask[long1][lat2];
-                checkCells(hitsMap, sra, ali, longitude, latitude, distance);
-            }
+                    /* check is within mask bounds */
+                    if (x >= 0 && x < mask[0].length
+                        && y >= 0 && y < mask.length
+                        && mask[x][y] != null) {
 
-            if (long1 != long2 && lat1 != lat2
-                && long2 >= 0 && long2 < mask[0].length
-                && lat2 >= 0 && lat2 < mask.length
-                && mask[long2][lat2] != null) {
-                // get list of shapes to check at this mask cell
-                ArrayList<Integer> ali = mask[long2][lat2];
-                checkCells(hitsMap, sra, ali, longitude, latitude, distance);
+                        /* check each potential cell */
+                        checkCells(hitsMap, sra, mask[x][y], longitude, latitude, distance);
+
+                    }
+                }
             }
 
             r = hitsMap.entrySet().stream().map(e -> ImmutablePair.of(e.getKey(), e.getValue())).collect(Collectors.toList());
